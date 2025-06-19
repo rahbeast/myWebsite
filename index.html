@@ -514,6 +514,19 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .expandable-content {
+    display: none;
+    margin-top: 1rem;
+}
+
+.expandable-content img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
     </style>
 </head>
 <body>
@@ -597,23 +610,35 @@
         <div class="container">
             <h2 class="section-title fade-in">My Skills & Interests</h2>
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Software Engineering</h3>
-                    <p>Passionate about building robust applications with clean, efficient code. Experienced in various programming languages and development frameworks.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏋️</div>
-                    <h3>Fitness & Wellness</h3>
-                    <p>Dedicated gym enthusiast who believes in maintaining a strong body and mind. Fitness is not just a hobby—it's a lifestyle that drives discipline in all areas.</p>
-                </div>
-                <div class="service-card fade-in">
+                <div class="service-card fade-in" onclick="toggleExpand(this)">
+    <div class="service-icon">⚙️</div>
+    <h3>Software Engineering</h3>
+    <p>Passionate about building robust applications...</p>
+    <div class="expandable-content">
+        <img src="project1.jpg" alt="Project 1">
+        <img src="project2.jpg" alt="Project 2">
+    </div>
+</div>
+
+                <div class="service-card fade-in" onclick="toggleExpand(this)">
+    <div class="service-icon">🏋️</div>
+    <h3>Fitness & Wellness</h3>
+    <p>Dedicated gym enthusiast...</p>
+    <div class="expandable-content">
+        <img src="gym1.jpg" alt="Gym 1">
+        <img src="routine.jpg" alt="Workout Routine">
+    </div>
+</div>
+
+                <div class="service-card fade-in" onclick="toggleExpand(this)">
                     <div class="service-icon">🚀</div>
                     <h3>Innovation & Learning</h3>
                     <p>Always exploring new technologies and methodologies. Committed to continuous learning and staying updated with the latest industry trends and best practices.</p>
-                </div>
-            </div>
-        </div>
+           <div class="expandable-content">
+        <img src="gym1.jpg" alt="inno">
+        <img src="routine.jpg" alt="innovation">
+    </div>
+</div>
     </section>
 
     <!-- Contact Section -->
@@ -738,6 +763,15 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+        function toggleExpand(card) {
+    const content = card.querySelector('.expandable-content');
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+    } else {
+        content.style.display = 'block';
+    }
+}
+
     </script>
 </body>
 </html>
