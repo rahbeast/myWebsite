@@ -4,109 +4,669 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahul Manandhar - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
     <style>
-        /* ... keep your existing styles ... */
-
-        /* Scroll to Top */
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            border: none;
-            color: white;
-            padding: 12px;
-            border-radius: 50%;
-            display: none;
-            z-index: 1000;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Theme Toggle */
-        #themeToggle {
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section - Fixed */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.5s forwards;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.7s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            position: relative;
+            z-index: 10;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Social Media Styles */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            background: var(--primary-dark);
+        }
+
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.github { background: #333; }
+        .social-link.instagram { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+        .social-link.twitter { background: #1da1f2; }
+        .social-link.facebook { background: #1877f2; }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .about-text .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Contact Section */
+        .contact {
             background: var(--dark);
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 30px;
-            z-index: 1000;
         }
 
-        body.dark-mode {
-            background: #0f172a;
+        .contact .section-title {
             color: white;
         }
-        body.dark-mode nav {
-            background: rgba(15, 23, 42, 0.95);
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
         }
-        body.dark-mode .service-card {
-            background: #1e293b;
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn">&#8679;</button>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">Rahul Manandhar</a>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle">🌗 Toggle Theme</button>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm Rahul Manandhar</h1>
+                <p>Final Year Computer Engineering Student | Fitness Enthusiast | Future Tech Innovator</p>
+                <a href="#contact" class="cta-button">Let's Connect</a>
+            </div>
+        </div>
+    </section>
 
-    <!-- Your existing HTML content remains unchanged here -->
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <div class="about-image">
+                    <!-- Replace 'your-photo.jpg' with your actual photo file name -->
+                    <img src="your-photo.jpg" alt="Rahul Manandhar" onerror="this.style.display='none'; this.parentElement.innerHTML='💻';">
+                </div>
+                <div class="about-text">
+                    <p>Hello! I'm <span class="highlight">Rahul Manandhar</span>, a passionate final year Computer Engineering student with a deep love for technology and innovation. Currently pursuing my degree, I'm dedicated to mastering the art of software development, system design, and emerging technologies that shape our digital world.</p>
+                    <br>
+                    <p>Beyond the world of code and circuits, I'm equally passionate about <span class="highlight">fitness and wellness</span>. You'll often find me at the gym, pushing my limits and maintaining a healthy balance between mental and physical strength. I believe that a disciplined approach to fitness translates directly into disciplined coding and problem-solving skills.</p>
+                    <br>
+                    <p>As I approach graduation, I'm excited to bring my technical expertise, strong work ethic, and passion for continuous learning to the professional world. I'm always eager to take on new challenges and contribute to meaningful projects that make a positive impact.</p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/your-profile" class="social-link linkedin" target="_blank" title="LinkedIn">
+                            📎
+                        </a>
+                        <a href="https://github.com/your-username" class="social-link github" target="_blank" title="GitHub">
+                            🐙
+                        </a>
+                        <a href="https://instagram.com/your-username" class="social-link instagram" target="_blank" title="Instagram">
+                            📷
+                        </a>
+                        <a href="https://twitter.com/your-username" class="social-link twitter" target="_blank" title="Twitter">
+                            🐦
+                        </a>
+                        <a href="https://facebook.com/your-profile" class="social-link facebook" target="_blank" title="Facebook">
+                            📘
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Resume Button Example (Add in Hero section or Contact section) -->
-    <!-- <a href="Rahul_Manandhar_Resume.pdf" download class="cta-button">Download Resume</a> -->
+    <!-- Skills Section -->
+    <section class="services" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">My Skills & Interests</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Software Engineering</h3>
+                    <p>Passionate about building robust applications with clean, efficient code. Experienced in various programming languages and development frameworks.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏋️</div>
+                    <h3>Fitness & Wellness</h3>
+                    <p>Dedicated gym enthusiast who believes in maintaining a strong body and mind. Fitness is not just a hobby—it's a lifestyle that drives discipline in all areas.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚀</div>
+                    <h3>Innovation & Learning</h3>
+                    <p>Always exploring new technologies and methodologies. Committed to continuous learning and staying updated with the latest industry trends and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Modal for Success Message -->
-    <div id="successModal" style="display:none; position:fixed; top:40%; left:50%; transform:translate(-50%, -50%); background:white; padding:2rem; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:2000;">Thanks! I’ll get back to you soon.</div>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's Connect</h2>
+            <div class="fade-in" style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Whether you want to discuss technology, fitness, or potential opportunities, I'd love to hear from you!</p>
+            </div>
+            <form class="contact-form fade-in" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
 
-    <!-- AOS (Animate On Scroll) -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init();</script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rahul Manandhar. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // Scroll to top
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.addEventListener("scroll", () => {
-            scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-        });
-        scrollTopBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        // Theme toggle
-        const body = document.body;
-        const toggle = document.getElementById("themeToggle");
-        toggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
-        // Contact form modal
-        document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate form submission
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
+            
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-
+            
             setTimeout(() => {
-                document.getElementById("successModal").style.display = "block";
+                alert('Thank you for your message! I\'ll get back to you soon.');
                 this.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-                setTimeout(() => {
-                    document.getElementById("successModal").style.display = "none";
-                }, 3000);
             }, 1500);
         });
 
-        // Mobile Menu Toggle (basic)
-        document.getElementById('mobile-menu')?.addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('show-menu');
+        // Mobile menu toggle (basic implementation)
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            // This is a basic implementation - you can enhance it further
+            alert('Mobile menu clicked - you can implement a slide-out menu here');
+        });
+
+        // Add some interactive elements
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
         });
     </script>
 </body>
