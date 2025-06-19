@@ -237,7 +237,51 @@
             font-size: 4rem;
             color: white;
             margin: 0 auto;
+            overflow: hidden;
+            position: relative;
         }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Social Media Styles */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            background: var(--primary-dark);
+        }
+
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.github { background: #333; }
+        .social-link.instagram { background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); }
+        .social-link.twitter { background: #1da1f2; }
+        .social-link.facebook { background: #1877f2; }
 
         .about-text {
             font-size: 1.1rem;
@@ -434,7 +478,8 @@
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content fade-in">
                 <div class="about-image">
-                    💻
+                    <!-- Replace 'your-photo.jpg' with your actual photo file name -->
+                    <img src="your-photo.jpg" alt="Rahul Manandhar" onerror="this.style.display='none'; this.parentElement.innerHTML='💻';">
                 </div>
                 <div class="about-text">
                     <p>Hello! I'm <span class="highlight">Rahul Manandhar</span>, a passionate final year Computer Engineering student with a deep love for technology and innovation. Currently pursuing my degree, I'm dedicated to mastering the art of software development, system design, and emerging technologies that shape our digital world.</p>
@@ -442,6 +487,25 @@
                     <p>Beyond the world of code and circuits, I'm equally passionate about <span class="highlight">fitness and wellness</span>. You'll often find me at the gym, pushing my limits and maintaining a healthy balance between mental and physical strength. I believe that a disciplined approach to fitness translates directly into disciplined coding and problem-solving skills.</p>
                     <br>
                     <p>As I approach graduation, I'm excited to bring my technical expertise, strong work ethic, and passion for continuous learning to the professional world. I'm always eager to take on new challenges and contribute to meaningful projects that make a positive impact.</p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/your-profile" class="social-link linkedin" target="_blank" title="LinkedIn">
+                            📎
+                        </a>
+                        <a href="https://github.com/your-username" class="social-link github" target="_blank" title="GitHub">
+                            🐙
+                        </a>
+                        <a href="https://instagram.com/your-username" class="social-link instagram" target="_blank" title="Instagram">
+                            📷
+                        </a>
+                        <a href="https://twitter.com/your-username" class="social-link twitter" target="_blank" title="Twitter">
+                            🐦
+                        </a>
+                        <a href="https://facebook.com/your-profile" class="social-link facebook" target="_blank" title="Facebook">
+                            📘
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
