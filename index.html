@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,33 +256,6 @@
             border-radius: 20px;
         }
 
-        /* Image Upload Area */
-        .image-upload-area {
-            width: 100%;
-            height: 100%;
-            border: 3px dashed rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .image-upload-area:hover {
-            border-color: rgba(255, 255, 255, 0.8);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .upload-text {
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            text-align: center;
-            opacity: 0.8;
-        }
-
         /* Social Media Styles */
         .social-links {
             display: flex;
@@ -476,11 +450,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Hidden file input */
-        #imageInput {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -520,14 +489,9 @@
         <div class="container">
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content fade-in">
-                <div class="about-image" id="imageContainer">
-                    <!-- Image will be loaded here -->
-                    <img id="profileImage" src="rahul.jpg" alt="Rahul Manandhar" style="display: none;">
-                    <div class="image-upload-area" id="uploadArea" onclick="document.getElementById('imageInput').click()">
-                        <div style="font-size: 3rem;">📷</div>
-                        <div class="upload-text">Click to upload your photo<br><small>JPG, PNG, or GIF</small></div>
-                    </div>
-                    <input type="file" id="imageInput" accept="image/*">
+                <div class="about-image">
+                    <!-- Replace 'your-photo.jpg' with your actual photo file name -->
+                    <img src="rahul.jpg" alt="Rahul Manandhar" onerror="this.style.display='none'; this.parentElement.innerHTML='💻';">
                 </div>
                 <div class="about-text">
                     <p>Hello! I'm <span class="highlight">Rahul Manandhar</span>, a passionate final year Computer Engineering student with a deep love for technology and innovation. Currently pursuing my degree, I'm dedicated to mastering the art of software development, system design, and emerging technologies that shape our digital world.</p>
@@ -544,7 +508,7 @@
                         <a href="https://github.com/your-username" class="social-link github" target="_blank" title="GitHub">
                             🐙
                         </a>
-                        <a href="https://www.instagram.com/rahbeast_/" class="social-link instagram" target="_blank" title="Instagram">
+                        <a href="https://instagram.com/your-username" class="social-link instagram" target="_blank" title="Instagram">
                             📷
                         </a>
                         <a href="https://twitter.com/your-username" class="social-link twitter" target="_blank" title="Twitter">
@@ -616,66 +580,6 @@
     </footer>
 
     <script>
-        // Image upload functionality
-        const imageInput = document.getElementById('imageInput');
-        const profileImage = document.getElementById('profileImage');
-        const uploadArea = document.getElementById('uploadArea');
-
-        // Try to load existing image first
-        function checkExistingImage() {
-            const img = new Image();
-            img.onload = function() {
-                profileImage.src = this.src;
-                profileImage.style.display = 'block';
-                uploadArea.style.display = 'none';
-            };
-            img.onerror = function() {
-                // Image doesn't exist, show upload area
-                profileImage.style.display = 'none';
-                uploadArea.style.display = 'flex';
-            };
-            
-            // Try different possible image names/extensions
-            const possibleImages = ['rahul.jpg', 'rahul.JPG', 'rahul.jpeg', 'rahul.JPEG', 'rahul.png', 'rahul.PNG'];
-            let imageIndex = 0;
-            
-            function tryNextImage() {
-                if (imageIndex < possibleImages.length) {
-                    img.src = possibleImages[imageIndex];
-                    imageIndex++;
-                } else {
-                    // No image found, show upload area
-                    profileImage.style.display = 'none';
-                    uploadArea.style.display = 'flex';
-                }
-            }
-            
-            img.onerror = tryNextImage;
-            tryNextImage();
-        }
-
-        // Handle file upload
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                // Check if file is an image
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        profileImage.src = e.target.result;
-                        profileImage.style.display = 'block';
-                        uploadArea.style.display = 'none';
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    alert('Please select a valid image file (JPG, PNG, GIF)');
-                }
-            }
-        });
-
-        // Check for existing image on page load
-        window.addEventListener('load', checkExistingImage);
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
