@@ -116,9 +116,9 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
+        /* Hero Section - Fixed */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -183,6 +183,10 @@
         }
 
         @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -192,6 +196,9 @@
         /* Sections */
         section {
             padding: 5rem 0;
+            position: relative;
+            z-index: 10;
+            background: white;
         }
 
         .section-title {
@@ -295,6 +302,10 @@
         }
 
         /* Services Section */
+        .services {
+            background: white;
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -645,15 +656,6 @@
         document.getElementById('mobile-menu').addEventListener('click', function() {
             // This is a basic implementation - you can enhance it further
             alert('Mobile menu clicked - you can implement a slide-out menu here');
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
         });
 
         // Add some interactive elements
