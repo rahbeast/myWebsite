@@ -569,6 +569,10 @@
 
 
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    emailjs.init('mNqtLr7C9vU2_FJqG'); 
+</script>
 </head>
 <body>
     <!-- Navigation -->
@@ -761,37 +765,7 @@
             observer.observe(el);
         });
 
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert('Thank you for your message! I\'ll get back to you soon.');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
+       
         // Mobile menu toggle (basic implementation)
         document.getElementById('mobile-menu').addEventListener('click', function() {
             // This is a basic implementation - you can enhance it further
@@ -814,6 +788,34 @@
 
     document.querySelectorAll('.service-card.expanded').forEach(c => {
         c.classList.remove('expanded');
+        
+        // Contact form handling with EmailJS
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = this.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    
+    // Show loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Send email using EmailJS
+    emailjs.sendForm('service_bg1skeh', 'template_122li44', this)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Message sent successfully! I\'ll get back to you soon.');
+            document.getElementById('contact-form').reset();
+        })
+        .catch(function(error) {
+            console.log('FAILED...', error);
+            alert('Failed to send message. Please try again or email me directly.');
+        })
+        .finally(function() {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+});
         c.querySelector('.expandable-content').style.display = 'none';
     });
 
