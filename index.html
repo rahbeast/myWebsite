@@ -798,7 +798,7 @@
 }
 
 // Contact form handling with EmailJS (moved outside and properly structured)
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const submitBtn = this.querySelector('.submit-btn');
@@ -807,19 +807,27 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
+    // Add debugging
+    console.log('Form submitted');
+    console.log('Service ID:', 'service_bg1skeh');
+    console.log('Template ID:', 'template_122li44');
+    
     emailjs.sendForm('service_bg1skeh', 'template_122li44', this)
         .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
             alert('Message sent successfully! I\'ll get back to you soon.');
             document.getElementById('contact-form').reset();
         })
         .catch(function(error) {
-            alert('Failed to send message. Please try again or email me directly.');
+            console.log('FAILED...', error);
+            alert('Failed to send message. Error: ' + JSON.stringify(error));
         })
         .finally(function() {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         });
 });
+
 
     </script>
                  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
