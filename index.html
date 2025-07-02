@@ -566,6 +566,15 @@
         .service-card.expanded {
     padding-bottom: 1rem;
 }
+#typewriter::after {
+    content:  ' 8-)';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 
 
     </style>
@@ -602,7 +611,7 @@
         
         <div class="container">
             <div class="hero-content">
-                <h1>Hi, I'm Rahul Manandhar</h1>
+                <h1 id="typewriter"></h1>
                 <p>Final Year Computer Engineering Student | Fitness Enthusiast | Future Tech Innovator</p>
                 <a href="#contact" class="cta-button">Let's Connect</a>
             </div>
@@ -888,5 +897,22 @@
       "retina_detect": true
     });
 </script>
+
+<script>
+    const text = "Hi, I'm Rahul Manandhar";
+    const speed = 110; // typing speed in ms
+    let i = 0;
+
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typewriter").textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    window.addEventListener('load', typeWriter);
+</script>
+
 </body>
 </html>
