@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,61 +117,61 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            background: linear-gradient(135deg, #8e44ad, #e056fd);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
+        /* Hero Section - Fixed */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #8e44ad, #e056fd); /* or your custom gradient */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
 
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            top: 0;
-            left: 0;
-            background: transparent;
-        }
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
 
-        .hero .container {
-            position: relative;
-            z-index: 2;
-        }
+@keyframes bgPulse {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
 
-        @keyframes bgPulse {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06), transparent),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.04), transparent);
+    animation: floatParticles 10s linear infinite;
+    z-index: 0;
+}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06), transparent),
-                        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.04), transparent);
-            animation: floatParticles 10s linear infinite;
-            z-index: 0;
-        }
+@keyframes floatParticles {
+    0% {
+        transform: translate(-25%, -25%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-25%, -25%) rotate(360deg);
+    }
+}
 
-        @keyframes floatParticles {
-            0% {
-                transform: translate(-25%, -25%) rotate(0deg);
-            }
-            100% {
-                transform: translate(-25%, -25%) rotate(360deg);
-            }
-        }
 
         .hero-content {
             position: relative;
@@ -286,7 +287,7 @@
         }
 
         /* Social Media Styles */
-        .social-links {
+         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
@@ -394,6 +395,7 @@
             font-weight: 600;
         }
 
+        
         /* Services Section */
         .services {
             background: white;
@@ -414,7 +416,6 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             border: 1px solid #f1f5f9;
-            cursor: pointer;
         }
 
         .service-card:hover {
@@ -439,249 +440,6 @@
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--dark);
-        }
-
-        .expandable-content {
-            display: none;
-            margin-top: 1rem;
-            animation: fadeIn 0.3s ease-in-out;
-            text-align: left;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .expandable-content img {
-            width: 100%;
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        }
-
-        .service-card.expanded {
-            padding-bottom: 1rem;
-        }
-
-        /* Algorithm Visualizer Styles */
-        .algo-container {
-            max-width: 100%;
-            margin: 20px 0;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .algo-container h3 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .algo-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .algo-btn, .start-btn, .clear-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .start-btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-        }
-
-        .clear-btn {
-            background: linear-gradient(45deg, #f44336, #da190b);
-            color: white;
-        }
-
-        .algo-btn {
-            background: linear-gradient(45deg, #2196F3, #1976D2);
-            color: white;
-        }
-
-        .algo-btn.active {
-            background: linear-gradient(45deg, #FF9800, #F57C00);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
-        }
-
-        .algo-btn:hover, .start-btn:hover, .clear-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .algo-btn:disabled, .start-btn:disabled, .clear-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .grid-container {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-        }
-
-        #algorithmGrid {
-            border: 2px solid #333;
-            border-radius: 8px;
-            cursor: crosshair;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            max-width: 100%;
-            height: auto;
-        }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 15px 0;
-            font-size: 12px;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .legend-color {
-            width: 15px;
-            height: 15px;
-            border: 1px solid #333;
-            border-radius: 2px;
-        }
-
-        .algo-status {
-            text-align: center;
-            margin: 15px 0;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 500;
-            min-height: 15px;
-            font-size: 14px;
-        }
-
-        .algo-status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .algo-status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .algo-status.info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .algo-instructions {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 15px 0;
-            border-left: 3px solid #667eea;
-            font-size: 14px;
-        }
-
-        .algo-instructions h4 {
-            margin-top: 0;
-            color: #333;
-            font-size: 16px;
-        }
-
-        .algo-instructions ol {
-            margin: 8px 0;
-            padding-left: 18px;
-        }
-
-        .algorithm-info {
-            background: #fff3cd;
-            padding: 12px;
-            border-radius: 6px;
-            margin: 12px 0;
-            border-left: 3px solid #ffc107;
-            font-size: 13px;
-        }
-
-        /* Workout content styles */
-        .workout-section {
-            margin: 15px 0;
-        }
-
-        .workout-section h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .workout-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .workout-list li {
-            background: white;
-            margin: 8px 0;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .workout-list li strong {
-            color: var(--dark);
-        }
-
-        /* Innovation content styles */
-        .innovation-item {
-            background: white;
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
-
-        .innovation-item h4 {
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .innovation-item p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
         }
 
         /* Contact Section */
@@ -773,26 +531,6 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .algo-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .algo-btn, .start-btn, .clear-btn {
-                width: 160px;
-            }
-
-            #algorithmGrid {
-                width: 300px;
-                height: 300px;
-            }
-
-            .legend {
-                flex-direction: column;
-                align-items: center;
-                gap: 8px;
-            }
         }
 
         /* Scroll animations */
@@ -806,21 +544,44 @@
             opacity: 1;
             transform: translateY(0);
         }
+       .expandable-content {
+    display: none;
+    margin-top: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
 
-        #typewriter::after {
-            content:  ' 8-)';
-            animation: blink 1s infinite;
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+
+.expandable-content img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+        .service-card.expanded {
+    padding-bottom: 1rem;
+}
+#typewriter::after {
+    content:  ' 8-)';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        emailjs.init('mNqtLr7C9vU2_FJqG'); 
-    </script>
+<script>
+    emailjs.init('mNqtLr7C9vU2_FJqG'); 
+</script>
 </head>
 <body>
     <!-- Navigation -->
@@ -845,7 +606,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <!-- Particle Background -->
+           <!-- Particle Background -->
         <div id="particles-js"></div>
         
         <div class="container">
@@ -863,6 +624,7 @@
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content fade-in">
                 <div class="about-image">
+                  
                     <img src="rahul.jpg" alt="Rahul Manandhar" onerror="this.style.display='none'; this.parentElement.innerHTML='💻';">
                 </div>
                 <div class="about-text">
@@ -873,7 +635,7 @@
                     <p>As I approach graduation, I'm excited to bring my technical expertise, strong work ethic, and passion for continuous learning to the professional world. I'm always eager to take on new challenges and contribute to meaningful projects that make a positive impact.</p>
                     
                     <!-- Social Media Links -->
-                    <div class="social-links">
+                         <div class="social-links">
                         <a href="https://www.linkedin.com/in/rahool-manandhar-149910334" class="social-link linkedin" target="_blank" title="LinkedIn">
                             <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 14px;">in</span>
                         </a>
@@ -905,144 +667,35 @@
         <div class="container">
             <h2 class="section-title fade-in">My Skills & Interests</h2>
             <div class="services-grid">
-                
-                <!-- Software Engineering Section with Algorithm Visualizer -->
                 <div class="service-card fade-in" onclick="toggleExpand(this)">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Software Engineering</h3>
-                    <p>Currently working on algorithm visualizer and various software projects</p>
-                    <div class="expandable-content">
-                        <div class="algo-container">
-                            <h3>Algorithm Visualizer</h3>
-                            
-                            <div class="algo-instructions">
-                                <h4>How to use:</h4>
-                                <ol>
-                                    <li>Click once to place the <strong style="color: green;">start</strong> point</li>
-                                    <li>Click again to place the <strong style="color: red;">end</strong> point</li>
-                                    <li>Click and drag to draw <strong style="color: darkblue;">walls</strong></li>
-                                    <li>Select an algorithm and click "Start" to visualize</li>
-                                    <li>Use "Clear" to reset the grid</li>
-                                </ol>
-                            </div>
+    <div class="service-icon">⚙️</div>
+    <h3>Software Engineering</h3>
+    <p>currently working on algorithm visualizer</p>
+    <div class="expandable-content">
+        <img src="kmeans.png" alt="Project 1">
+        <img src="dijkstras.png" alt="Project 2">
+    </div>
+</div>
 
-                            <div class="algo-controls">
-                                <button class="algo-btn active" onclick="selectAlgorithm('dijkstra')">Dijkstra</button>
-                                <button class="algo-btn" onclick="selectAlgorithm('astar')">A* (A-Star)</button>
-                                <button class="start-btn" onclick="startVisualization()">Start</button>
-                                <button class="clear-btn" onclick="clearGrid()">Clear</button>
-                            </div>
-
-                            <div id="algorithm-info" class="algorithm-info">
-                                <strong>Dijkstra's Algorithm:</strong> Finds the shortest path by exploring all nodes uniformly. Guarantees the optimal path but may explore more nodes than necessary.
-                            </div>
-
-                            <div class="grid-container">
-                                <canvas id="algorithmGrid" width="400" height="400"></canvas>
-                            </div>
-
-                            <div class="legend">
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background: green;"></div>
-                                    <span>Start</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background: red;"></div>
-                                    <span>End</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background: darkblue;"></div>
-                                    <span>Wall</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background: skyblue;"></div>
-                                    <span>Visited</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background: yellow;"></div>
-                                    <span>Path</span>
-                                </div>
-                            </div>
-
-                            <div id="algo-status" class="algo-status"></div>
-                        </div>
-                        
-                        <img src="kmeans.png" alt="K-means Clustering" style="margin-top: 20px;">
-                        <img src="dijkstras.png" alt="Dijkstra's Algorithm">
-                    </div>
-                </div>
-
-                <!-- Fitness & Wellness Section -->
                 <div class="service-card fade-in" onclick="toggleExpand(this)">
-                    <div class="service-icon">🏋️</div>
-                    <h3>Fitness & Wellness</h3>
-                    <p>Dedicated gym enthusiast; fat to fit transformation (lost 20 kg)</p>
-                    <div class="expandable-content">
-                        <div class="workout-section">
-                            <h4>My Transformation Journey</h4>
-                            <p>Lost 20 kg through dedicated training and nutrition. Here's my current routine:</p>
-                        </div>
-                        
-                        <div class="workout-section">
-                            <h4>Weekly Workout Schedule</h4>
-                            <ul class="workout-list">
-                                <li><strong>Monday:</strong> Chest & Triceps - Bench Press, Incline DB Press, Dips, Close-Grip Bench</li>
-                                <li><strong>Tuesday:</strong> Back & Biceps - Pull-ups, Deadlifts, Rows, Curls</li>
-                                <li><strong>Wednesday:</strong> Legs & Shoulders - Squats, Leg Press, Shoulder Press, Lateral Raises</li>
-                                <li><strong>Thursday:</strong> Arms Focus - Supersets of Biceps and Triceps</li>
-                                <li><strong>Friday:</strong> Full Body HIIT - Circuit Training</li>
-                                <li><strong>Saturday:</strong> Cardio & Core - Running, Planks, Ab Workouts</li>
-                                <li><strong>Sunday:</strong> Rest & Recovery - Light stretching or yoga</li>
-                            </ul>
-                        </div>
+    <div class="service-icon">🏋️</div>
+    <h3>Fitness & Wellness</h3>
+    <p>Dedicated gym enthusiast; fat to fit (lost 20 kg)</p>
+    <div class="expandable-content">
+        <img src="body.jpg" alt="Gym 1">
+        <img src="bodyy.jpg" alt="Workout Routine">
+    </div>
+</div>
 
-                        <div class="workout-section">
-                            <h4>Nutrition Philosophy</h4>
-                            <p>Focus on whole foods, adequate protein intake (1.6g per kg body weight), and maintaining a sustainable caloric balance. Meal prep is key to consistency!</p>
-                        </div>
-
-                        <img src="body.jpg" alt="Transformation Progress">
-                        <img src="bodyy.jpg" alt="Current Physique">
-                    </div>
-                </div>
-
-                <!-- Innovation & Learning Section -->
                 <div class="service-card fade-in" onclick="toggleExpand(this)">
                     <div class="service-icon">🚀</div>
                     <h3>Innovation & Learning</h3>
-                    <p>Always exploring new technologies and methodologies. Committed to continuous learning and staying updated with industry trends.</p>
-                    <div class="expandable-content">
-                        <div class="innovation-item">
-                            <h4>Current Learning Focus</h4>
-                            <p>Diving deep into Machine Learning algorithms, exploring React.js ecosystem, and studying system design patterns for scalable applications.</p>
-                        </div>
-
-                        <div class="innovation-item">
-                            <h4>Recent Projects</h4>
-                            <p>Developed an algorithm visualizer to help students understand pathfinding algorithms. Currently working on a fitness tracking web application.</p>
-                        </div>
-
-                        <div class="innovation-item">
-                            <h4>Technology Stack Exploration</h4>
-                            <p>Experimenting with modern web technologies including React, Node.js, Python for data science, and cloud computing platforms like AWS.</p>
-                        </div>
-
-                        <div class="innovation-item">
-                            <h4>Future Goals</h4>
-                            <p>Planning to contribute to open-source projects, build a comprehensive portfolio of web applications, and eventually start my own tech startup focused on health and fitness technology.</p>
-                        </div>
-
-                        <div class="innovation-item">
-                            <h4>Learning Resources</h4>
-                            <p>Regularly follow tech blogs, participate in coding challenges on LeetCode, and take online courses to stay current with emerging technologies and best practices.</p>
-                        </div>
-
-                        <img src="gym1.jpg" alt="Learning Environment">
-                        <img src="routine.jpg" alt="Study Routine">
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <p>Always exploring new technologies and methodologies. Committed to continuous learning and staying updated with the latest industry trends and best practices.</p>
+           <div class="expandable-content">
+        <img src="gym1.jpg" alt="inno">
+        <img src="routine.jpg" alt="innovation">
+    </div>
+</div>
     </section>
 
     <!-- Contact Section -->
@@ -1052,7 +705,7 @@
             <div class="fade-in" style="text-align: center; margin-bottom: 2rem;">
                 <p style="font-size: 1.1rem; margin-bottom: 1rem;">Whether you want to discuss technology, fitness, or potential opportunities, I'd love to hear from you!</p>
             </div>
-            <form class="contact-form fade-in" id="contact-form">
+           <form class="contact-form fade-in" id="contact-form">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -1067,6 +720,7 @@
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
+
         </div>
     </section>
 
@@ -1078,402 +732,6 @@
     </footer>
 
     <script>
-        // Algorithm Visualizer JavaScript
-        const canvas = document.getElementById('algorithmGrid');
-        const ctx = canvas.getContext('2d');
-        const ROWS = 20; // Reduced for smaller display
-        const GAP = 400 / ROWS;
-        
-        let grid = [];
-        let start = null;
-        let end = null;
-        let walls = [];
-        let isDrawing = false;
-        let currentAlgorithm = 'dijkstra';
-        let isRunning = false;
-
-        // Algorithm information
-        const algorithmInfo = {
-            'dijkstra': '<strong>Dijkstra\'s Algorithm:</strong> Finds the shortest path by exploring all nodes uniformly. Guarantees the optimal path but may explore more nodes than necessary.',
-            'astar': '<strong>A* Algorithm:</strong> Uses a heuristic (Manhattan distance) to guide the search toward the goal. Generally faster than Dijkstra and still guarantees the optimal path.'
-        };
-
-        // Pathfinding algorithms
-        function heuristic(a, b) {
-            return Math.abs(a.row - b.row) + Math.abs(a.col - b.col);
-        }
-
-        function getNeighbors(node, gridData) {
-            const neighbors = [];
-            const directions = [
-                { row: -1, col: 0 }, // up
-                { row: 1, col: 0 },  // down
-                { row: 0, col: -1 }, // left
-                { row: 0, col: 1 }   // right
-            ];
-
-            for (const dir of directions) {
-                const newRow = node.row + dir.row;
-                const newCol = node.col + dir.col;
-                
-                if (newRow >= 0 && newRow < ROWS && newCol >= 0 && newCol < ROWS) {
-                    const neighbor = gridData[newRow][newCol];
-                    if (neighbor.type !== 'wall') {
-                        neighbors.push(neighbor);
-                    }
-                }
-            }
-            return neighbors;
-        }
-
-        function dijkstraAlgorithm(gridData, startPos, endPos) {
-            // Initialize distances
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < ROWS; j++) {
-                    gridData[i][j].distance = Infinity;
-                    gridData[i][j].previous = null;
-                    gridData[i][j].visited = false;
-                }
-            }
-
-            const startNode = gridData[startPos.row][startPos.col];
-            const endNode = gridData[endPos.row][endPos.col];
-            startNode.distance = 0;
-
-            const unvisited = [];
-            const visitedOrder = [];
-
-            // Add all nodes to unvisited
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < ROWS; j++) {
-                    unvisited.push(gridData[i][j]);
-                }
-            }
-
-            while (unvisited.length > 0) {
-                // Sort by distance and get closest node
-                unvisited.sort((a, b) => a.distance - b.distance);
-                const current = unvisited.shift();
-
-                if (current.distance === Infinity) break;
-                if (current === endNode) break;
-
-                current.visited = true;
-                if (current.type !== 'start' && current.type !== 'end') {
-                    visitedOrder.push({ row: current.row, col: current.col });
-                }
-
-                const neighbors = getNeighbors(current, gridData);
-                for (const neighbor of neighbors) {
-                    if (!neighbor.visited) {
-                        const tentativeDistance = current.distance + 1;
-                        if (tentativeDistance < neighbor.distance) {
-                            neighbor.distance = tentativeDistance;
-                            neighbor.previous = current;
-                        }
-                    }
-                }
-            }
-
-            // Reconstruct path
-            const path = [];
-            let current = endNode;
-            while (current) {
-                path.unshift({ row: current.row, col: current.col });
-                current = current.previous;
-            }
-
-            return {
-                success: path.length > 1,
-                path: path.length > 1 ? path : [],
-                visited: visitedOrder,
-                message: path.length > 1 ? "Path found!" : "No path found!"
-            };
-        }
-
-        function aStarAlgorithm(gridData, startPos, endPos) {
-            // Initialize scores
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < ROWS; j++) {
-                    gridData[i][j].gScore = Infinity;
-                    gridData[i][j].fScore = Infinity;
-                    gridData[i][j].previous = null;
-                }
-            }
-
-            const startNode = gridData[startPos.row][startPos.col];
-            const endNode = gridData[endPos.row][endPos.col];
-            
-            startNode.gScore = 0;
-            startNode.fScore = heuristic(startNode, endNode);
-
-            const openSet = [startNode];
-            const visitedOrder = [];
-
-            while (openSet.length > 0) {
-                // Get node with lowest fScore
-                openSet.sort((a, b) => a.fScore - b.fScore);
-                const current = openSet.shift();
-
-                if (current === endNode) break;
-
-                if (current.type !== 'start' && current.type !== 'end') {
-                    visitedOrder.push({ row: current.row, col: current.col });
-                }
-
-                const neighbors = getNeighbors(current, gridData);
-                for (const neighbor of neighbors) {
-                    const tentativeGScore = current.gScore + 1;
-
-                    if (tentativeGScore < neighbor.gScore) {
-                        neighbor.previous = current;
-                        neighbor.gScore = tentativeGScore;
-                        neighbor.fScore = tentativeGScore + heuristic(neighbor, endNode);
-
-                        if (!openSet.includes(neighbor)) {
-                            openSet.push(neighbor);
-                        }
-                    }
-                }
-            }
-
-            // Reconstruct path
-            const path = [];
-            let current = endNode;
-            while (current) {
-                path.unshift({ row: current.row, col: current.col });
-                current = current.previous;
-            }
-
-            return {
-                success: path.length > 1,
-                path: path.length > 1 ? path : [],
-                visited: visitedOrder,
-                message: path.length > 1 ? "Path found!" : "No path found!"
-            };
-        }
-
-        // Initialize grid
-        function initGrid() {
-            grid = [];
-            for (let i = 0; i < ROWS; i++) {
-                grid[i] = [];
-                for (let j = 0; j < ROWS; j++) {
-                    grid[i][j] = {
-                        row: i,
-                        col: j,
-                        type: 'empty'
-                    };
-                }
-            }
-            drawGrid();
-        }
-
-        function drawGrid() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < ROWS; j++) {
-                    const cell = grid[i][j];
-                    const x = j * GAP;
-                    const y = i * GAP;
-                    
-                    // Set colors based on cell type
-                    switch (cell.type) {
-                        case 'start':
-                            ctx.fillStyle = 'green';
-                            break;
-                        case 'end':
-                            ctx.fillStyle = 'red';
-                            break;
-                        case 'wall':
-                            ctx.fillStyle = 'darkblue';
-                            break;
-                        case 'visited':
-                            ctx.fillStyle = 'skyblue';
-                            break;
-                        case 'path':
-                            ctx.fillStyle = 'yellow';
-                            break;
-                        default:
-                            ctx.fillStyle = 'white';
-                    }
-                    
-                    ctx.fillRect(x, y, GAP, GAP);
-                    ctx.strokeStyle = 'gray';
-                    ctx.strokeRect(x, y, GAP, GAP);
-                }
-            }
-        }
-
-        function getGridPosition(event) {
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            const col = Math.floor(x / GAP);
-            const row = Math.floor(y / GAP);
-            return { row, col };
-        }
-
-        function setAlgoStatus(message, type = 'info') {
-            const statusEl = document.getElementById('algo-status');
-            statusEl.textContent = message;
-            statusEl.className = `algo-status ${type}`;
-        }
-
-        function selectAlgorithm(algorithm) {
-            if (isRunning) return;
-            
-            currentAlgorithm = algorithm;
-            document.querySelectorAll('.algo-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update algorithm info
-            const infoEl = document.getElementById('algorithm-info');
-            infoEl.innerHTML = algorithmInfo[algorithm];
-            
-            setAlgoStatus(`${algorithm.toUpperCase()} algorithm selected`, 'info');
-        }
-
-        async function startVisualization() {
-            if (isRunning || !start || !end) {
-                setAlgoStatus('Please set both start and end points!', 'error');
-                return;
-            }
-            
-            isRunning = true;
-            setAlgoStatus(`Running ${currentAlgorithm.toUpperCase()} algorithm...`, 'info');
-            
-            // Clear previous visualization
-            for (let i = 0; i < ROWS; i++) {
-                for (let j = 0; j < ROWS; j++) {
-                    if (grid[i][j].type === 'visited' || grid[i][j].type === 'path') {
-                        grid[i][j].type = 'empty';
-                    }
-                }
-            }
-            drawGrid();
-            
-            // Create a deep copy of grid for algorithm
-            const gridCopy = grid.map(row => 
-                row.map(cell => ({ ...cell }))
-            );
-            
-            let result;
-            if (currentAlgorithm === 'dijkstra') {
-                result = dijkstraAlgorithm(gridCopy, start, end);
-            } else {
-                result = aStarAlgorithm(gridCopy, start, end);
-            }
-            
-            if (result.success) {
-                await animateVisualization(result.visited, result.path);
-                setAlgoStatus(`${currentAlgorithm.toUpperCase()}: ${result.message}`, 'success');
-            } else {
-                setAlgoStatus(`${currentAlgorithm.toUpperCase()}: ${result.message}`, 'error');
-            }
-            
-            isRunning = false;
-        }
-
-        async function animateVisualization(visited, path) {
-            // Animate visited cells
-            for (const cell of visited) {
-                grid[cell.row][cell.col].type = 'visited';
-                drawGrid();
-                await new Promise(resolve => setTimeout(resolve, 30));
-            }
-            
-            // Animate path
-            for (const cell of path) {
-                if (grid[cell.row][cell.col].type !== 'start' && grid[cell.row][cell.col].type !== 'end') {
-                    grid[cell.row][cell.col].type = 'path';
-                    drawGrid();
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                }
-            }
-        }
-
-        function clearGrid() {
-            if (isRunning) return;
-            
-            start = null;
-            end = null;
-            walls = [];
-            initGrid();
-            setAlgoStatus('Grid cleared', 'info');
-        }
-
-        // Mouse event handlers for algorithm grid
-        if (canvas) {
-            canvas.addEventListener('mousedown', (event) => {
-                if (isRunning) return;
-                
-                const pos = getGridPosition(event);
-                const cell = grid[pos.row][pos.col];
-                
-                if (!start && cell.type === 'empty') {
-                    start = pos;
-                    cell.type = 'start';
-                    setAlgoStatus('Start point set. Click to set end point.', 'info');
-                } else if (!end && cell.type === 'empty') {
-                    end = pos;
-                    cell.type = 'end';
-                    setAlgoStatus('End point set. Draw walls by clicking and dragging.', 'info');
-                } else if (cell.type === 'empty') {
-                    cell.type = 'wall';
-                    walls.push(pos);
-                    isDrawing = true;
-                }
-                
-                drawGrid();
-            });
-
-            canvas.addEventListener('mousemove', (event) => {
-                if (isDrawing && !isRunning) {
-                    const pos = getGridPosition(event);
-                    const cell = grid[pos.row][pos.col];
-                    
-                    if (cell.type === 'empty') {
-                        cell.type = 'wall';
-                        walls.push(pos);
-                        drawGrid();
-                    }
-                }
-            });
-
-            canvas.addEventListener('mouseup', () => {
-                isDrawing = false;
-            });
-        }
-
-        // Regular portfolio JavaScript
-        function toggleExpand(card) {
-            const content = card.querySelector('.expandable-content');
-            const isExpanded = card.classList.contains('expanded');
-
-            // Close all other expanded cards
-            document.querySelectorAll('.service-card.expanded').forEach(c => {
-                c.classList.remove('expanded');
-                c.querySelector('.expandable-content').style.display = 'none';
-            });
-
-            if (!isExpanded) {
-                card.classList.add('expanded');
-                content.style.display = 'block';
-                
-                // Initialize algorithm visualizer if this is the software engineering card
-                if (card.querySelector('#algorithmGrid')) {
-                    setTimeout(() => {
-                        initGrid();
-                        setAlgoStatus('Click to place start point', 'info');
-                    }, 100);
-                }
-            }
-        }
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1516,126 +774,145 @@
             observer.observe(el);
         });
 
-        // Mobile menu toggle
+       
+        // Mobile menu toggle (basic implementation)
         document.getElementById('mobile-menu').addEventListener('click', function() {
+            // This is a basic implementation - you can enhance it further
             alert('Mobile menu clicked - you can implement a slide-out menu here');
         });
 
-        // Add hover effects to service cards
+        // Add some interactive elements
         document.querySelectorAll('.service-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                if (!this.classList.contains('expanded')) {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                }
+                this.style.transform = 'translateY(-10px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', function() {
-                if (!this.classList.contains('expanded')) {
-                    this.style.transform = 'translateY(0) scale(1)';
-                }
+                this.style.transform = 'translateY(0) scale(1)';
             });
         });
+       function toggleExpand(card) {
+    const content = card.querySelector('.expandable-content');
+    const isExpanded = card.classList.contains('expanded');
 
-        // Contact form handling
+    document.querySelectorAll('.service-card.expanded').forEach(c => {
+        c.classList.remove('expanded');
+        c.querySelector('.expandable-content').style.display = 'none';
+    });
+
+    if (!isExpanded) {
+        card.classList.add('expanded');
+        content.style.display = 'block';
+    }
+}
+
+// Contact form handling with EmailJS 
         document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            emailjs.sendForm('service_bg1skeh', 'template_122li44', this)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert('Message sent successfully! I\'ll get back to you soon.');
-                    document.getElementById('contact-form').reset();
-                })
-                .catch(function(error) {
-                    console.log('FAILED...', error);
-                    alert('Failed to send message. Please try again or contact me directly.');
-                })
-                .finally(function() {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+    e.preventDefault();
+    
+    const submitBtn = this.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    
+    console.log('Form submitted');
+    console.log('Service ID:', 'service_bg1skeh');
+    console.log('Template ID:', 'template_122li44');
+    
+    emailjs.sendForm('service_bg1skeh', 'template_122li44', this)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Message sent successfully! I\'ll get back to you soon.');
+            document.getElementById('contact-form').reset();
+        })
+        .catch(function(error) {
+            console.log('FAILED...', error);
+            alert('Failed to send message. Error: ' + JSON.stringify(error));
+        })
+        .finally(function() {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         });
+});
 
-        // Typewriter effect
-        const text = "Hi, I'm Rahul Manandhar";
-        const speed = 110;
-        let i = 0;
 
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter").textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
+    </script>
+                 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 4,
+          "direction": "none",
+          "out_mode": "out"
         }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+</script>
 
-        window.addEventListener('load', typeWriter);
-    </script>
+<script>
+    const text = "Hi, I'm Rahul Manandhar";
+    const speed = 110; // typing speed in ms
+    let i = 0;
 
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": { "value": "#ffffff" },
-                "shape": {
-                    "type": "circle",
-                    "stroke": { "width": 0, "color": "#000000" }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false
-                },
-                "size": {
-                    "value": 3,
-                    "random": true
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 4,
-                    "direction": "none",
-                    "out_mode": "out"
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    }
-                },
-                "modes": {
-                    "repulse": { "distance": 100 },
-                    "push": { "particles_nb": 4 }
-                }
-            },
-            "retina_detect": true
-        });
-    </script>
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typewriter").textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    window.addEventListener('load', typeWriter);
+</script>
+
 </body>
 </html>
